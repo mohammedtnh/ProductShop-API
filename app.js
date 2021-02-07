@@ -1,6 +1,6 @@
 const express = require("express");
 const slugify = require("slugify");
-
+const PORT = 8000;
 let data = require("./data");
 
 const app = express();
@@ -16,10 +16,21 @@ app.get("/products/:productId", (req, res) => {
     (product) => product.id === +req.params.productId
   );
   if (foundProduct) {
-    res.json(foundProduct);
+    res.status(200).json(foundProduct);
   } else {
     res.status(404).json({ message: "Product not found" });
   }
+});
+
+app.post("/products", (req, res) => {
+  const newProduct = {
+    id: data[data.length - 1].id + 1,
+    slug: slugify(newProduct.name, { lower: true }),
+    ...req.body,
+  };
+
+  data.push(newProduct);
+  res.status(201).json(newProduct);
 });
 
 app.delete("/products/:productId", (req, res) => {
@@ -34,15 +45,6 @@ app.delete("/products/:productId", (req, res) => {
   }
 });
 
-app.post("/products", (req, res) => {
-  const newProduct = req.body;
-  newProduct.id = data[data.length - 1].id + 1;
-  newProduct.slug = slugify(newProduct.name, { lower: true });
-
-  data.push(newProduct);
-  res.status(201).json(newProduct);
-});
-
-app.listen(8000, () => {
-  console.log("The application is running on localhost:8000");
+app.listen(PORT, () => {
+  console.log(`The application is running on localhost:${PORT}`);
 });
