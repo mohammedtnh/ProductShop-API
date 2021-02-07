@@ -5,7 +5,8 @@
   "repository": "https://github.com/mohammedtnh/ProductShop-API.git",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "slugify": "^1.4.6"
   },
   "scripts": {
     "start": "nodemon app.js"
