@@ -516,6 +516,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash.defaults@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
+  integrity sha1-0JF4cW/+pN3p5ft7N/bwgCJ0WAw=
+
 lodash@^4.17.20, lodash@^4.17.5:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
@@ -929,6 +934,13 @@ sequelize-pool@^6.0.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-6.1.0.tgz#caaa0c1e324d3c2c3a399fed2c7998970925d668"
   integrity sha512-4YwEw3ZgK/tY/so+GfnSgXkdwIJJ1I32uZJztIEgZeAO6HMgj64OzySbWLgxj+tXhZCJnzRfkY9gINw8Ft8ZMg==
 
+sequelize-slugify@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/sequelize-slugify/-/sequelize-slugify-1.4.0.tgz#e886095f490fca02c6547db2b8d2da8a7c626178"
+  integrity sha512-gdWYkhvZWxLozSimDo5iMr5SBLnGwpWp9bNbCDT6ieVpV98xBlKIaUGIAcw02fSJTBSASqNWFKW1lP14Bf4log==
+  dependencies:
+    sluglife "^0.9.8"
+
 sequelize@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.5.0.tgz#c968a03f6fbbcda40717f73edb39fadf27b85e96"
@@ -977,6 +989,14 @@ slugify@^1.4.6:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.4.6.tgz#ef288d920a47fb01c2be56b3487b6722f5e34ace"
   integrity sha512-ZdJIgv9gdrYwhXqxsH9pv7nXxjUEyQ6nqhngRxoAAOlmMGA28FDq5O4/5US4G2/Nod7d1ovNcgURQJ7kHq50KQ==
+
+sluglife@^0.9.8:
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/sluglife/-/sluglife-0.9.8.tgz#82e9bbfea8897fd102af416d890f59fb59f26ea0"
+  integrity sha512-tJ5KZ9E8ApCFDIQqKbqXVhi4FdTjWCKg1jeEB8M7UxRaT3Sk9Al3GwFfltVV6JJhTZaHrONthNmWtZMExJNRqQ==
+  dependencies:
+    lodash.defaults "^4.2.0"
+    unicode ">=11.0.1"
 
 split2@^3.1.1:
   version "3.2.2"
@@ -1060,6 +1080,11 @@ underscore@^1.7.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.12.0.tgz#4814940551fc80587cef7840d1ebb0f16453be97"
   integrity sha512-21rQzss/XPMjolTiIezSu3JAjgagXKROtNrYFEOWK109qY1Uv2tVjPTZ1ci2HgvQDA16gHYSthQIJfB+XId/rQ==
+
+unicode@>=11.0.1:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/unicode/-/unicode-13.0.0.tgz#0775fe86cdbb1fa30e8d060afe194f71aa0c5306"
+  integrity sha512-osNPLT4Lqna/sV6DQikrB8m4WxR61/k0fnhfKnkPGcZImczW3IysRXvWxfdqGUjh0Ju2o/tGGgu46mlfc/cpZw==
 
 universalify@^0.1.0:
   version "0.1.2"
