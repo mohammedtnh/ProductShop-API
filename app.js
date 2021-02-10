@@ -7,6 +7,20 @@ const app = express();
 app.use(express.json());
 app.use("/products", productRouts);
 
+//Handle 404
+app.use((req, res, next) => {
+  next({
+    status: 404,
+    message: "Path Not Found",
+  });
+});
+
+//Handle Error
+app.use((err, req, res, next) => {
+  res.status(err.status ?? 500);
+  res.json({ message: err.message ?? "Internal Server Error" });
+});
+
 //Sync DB and listen to port
 const run = async () => {
   try {
