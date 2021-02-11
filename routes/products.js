@@ -16,10 +16,9 @@ router.param("productId", async (req, res, next, productId) => {
     req.product = foundProduct;
     next();
   } else {
-    next({
-      status: 404,
-      message: "Product not found",
-    });
+    const error = new Error("Product Not Found");
+    error.status = 404;
+    next(error);
   }
 });
 

@@ -3,16 +3,20 @@ const db = require("./db/models");
 const productRouts = require("./routes/products");
 const PORT = 8000;
 const app = express();
+const cors = require("cors");
 
+//Middleware
 app.use(express.json());
+app.use(cors());
+
+//Routs
 app.use("/products", productRouts);
 
 //Handle 404
 app.use((req, res, next) => {
-  next({
-    status: 404,
-    message: "Path Not Found",
-  });
+  const error = new Error("Path Not Found");
+  error.status = 404;
+  next(error);
 });
 
 //Handle Error
