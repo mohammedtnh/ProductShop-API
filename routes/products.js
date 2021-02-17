@@ -25,9 +25,6 @@ router.param("productId", async (req, res, next, productId) => {
 //List all products
 router.get("/", productList);
 
-//Create a product
-router.post("/", upload.single("image"), productCreate);
-
 //Get details
 router.get("/:productId", productDetails);
 

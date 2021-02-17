@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("./db/models");
 const productRouts = require("./routes/products");
+const shopRouts = require("./routes/shops");
 const path = require("path");
 const PORT = 8000;
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 
 //Routs
 app.use("/products", productRouts);
+app.use("/shops", shopRouts);
 app.use("/media", express.static(path.join(__dirname, "media")));
 
 //Handle 404
