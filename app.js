@@ -2,18 +2,25 @@ const express = require("express");
 const db = require("./db/models");
 const productRouts = require("./routes/products");
 const shopRouts = require("./routes/shops");
+const userRoutes = require("./routes/users");
 const path = require("path");
+const cors = require("cors");
+const passport = require("passport");
+const { localStrategy } = require("./middleware/passport");
+
 const PORT = 8000;
 const app = express();
-const cors = require("cors");
 
 //Middleware
 app.use(express.json());
 app.use(cors());
+app.use(passport.initialize());
+passport.use(localStrategy);
 
 //Routs
 app.use("/products", productRouts);
 app.use("/shops", shopRouts);
+app.use(userRoutes);
 app.use("/media", express.static(path.join(__dirname, "media")));
 
 //Handle 404
