@@ -27,6 +27,8 @@ exports.shopList = async (req, res, next) => {
 
 exports.shopCreate = async (req, res, next) => {
   try {
+    req.body.userId = req.user.id;
+
     if (req.file) {
       req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
@@ -39,12 +41,19 @@ exports.shopCreate = async (req, res, next) => {
 
 exports.productCreate = async (req, res, next) => {
   try {
-    if (req.file) {
-      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+    if (req.user.id === req.shop.userId) {
+      if (req.file) {
+        req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+      }
+      req.body.shopId = req.shop.id;
+      const newProduct = await Product.create(req.body);
+      res.status(201).json(newProduct);
+    } else {
+      next({
+        status: 401,
+        message: "This is not your shop",
+      });
     }
-    req.body.shopId = req.shop.id;
-    const newProduct = await Product.create(req.body);
-    res.status(201).json(newProduct);
   } catch (error) {
     next(error);
   }

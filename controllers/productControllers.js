@@ -31,11 +31,20 @@ exports.productDetails = async (req, res, next) => {
 
 exports.productUpdate = async (req, res, next) => {
   try {
-    if (req.file) {
-      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+    const foundShop = await Shop.findByPk(req.product.shopId);
+
+    if (req.user.id === foundShop.userId) {
+      if (req.file) {
+        req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+      }
+      await req.product.update(req.body);
+      res.status(200).json(req.product);
+    } else {
+      next({
+        status: 401,
+        message: "This is not your shop",
+      });
     }
-    await req.product.update(req.body);
-    res.status(200).json(req.product);
   } catch (error) {
     next(error);
   }
@@ -43,8 +52,17 @@ exports.productUpdate = async (req, res, next) => {
 
 exports.productDelete = async (req, res, next) => {
   try {
-    await req.product.destroy();
-    res.status(204).end();
+    const foundShop = await Shop.findByPk(req.product.shopId);
+
+    if (req.user.id === foundShop.userId) {
+      await req.product.destroy();
+      res.status(204).end();
+    } else {
+      next({
+        status: 401,
+        message: "This is not your shop",
+      });
+    }
   } catch (error) {
     next(error);
   }
