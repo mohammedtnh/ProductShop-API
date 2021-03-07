@@ -1,12 +1,15 @@
 const express = require("express");
-const db = require("./db/models");
-const productRouts = require("./routes/products");
-const shopRouts = require("./routes/shops");
-const userRoutes = require("./routes/users");
 const path = require("path");
 const cors = require("cors");
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
+const db = require("./db/models");
+
+//Routs
+const productRouts = require("./routes/products");
+const shopRouts = require("./routes/shops");
+const userRoutes = require("./routes/users");
+const orderRoutes = require("./routes/orders");
 
 const PORT = 8000;
 const app = express();
@@ -22,10 +25,12 @@ passport.use(jwtStrategy);
 app.use("/products", productRouts);
 app.use("/shops", shopRouts);
 app.use(userRoutes);
+app.use(orderRoutes);
 app.use("/media", express.static(path.join(__dirname, "media")));
 
 //Handle 404
 app.use((req, res, next) => {
+  console.log(req);
   const error = new Error("Path Not Found");
   error.status = 404;
   next(error);

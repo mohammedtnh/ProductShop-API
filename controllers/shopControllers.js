@@ -12,7 +12,7 @@ exports.fetchShop = async (shopId, next) => {
 exports.shopList = async (req, res, next) => {
   try {
     const shops = await Shop.findAll({
-      attributes: ["id", "name", "slug"],
+      attributes: ["id", "name", "slug", "image"],
       include: {
         model: Product,
         as: "products",
